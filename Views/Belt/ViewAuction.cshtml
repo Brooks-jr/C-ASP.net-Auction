@@ -22,18 +22,26 @@
 <!-- ======================================================================================== -->
 <!-- ======================================================================================== -->
 
+        <div class="jumbotron">
 
-    <h2>@ViewBag.Auction.ProductName</h2>
-    <h3>Created By: @ViewBag.Auction.CreatedBy</h3>
+        <div class="row">
+        <div class="col-9"><h1>@ViewBag.Auction.ProductName</h1><br> <h4>Created By: @ViewBag.Auction.CreatedBy</h4><hr><br></div>
+        <div class="col-9"><h5>Description: @ViewBag.Auction.Description</h5><hr><br></div><br>
+        <div class="col-6"> <h5>-Current Highest Bid: $@ViewBag.Auction.Bid</h5></div>
+        </div>
 
 
-    <h5>@ViewBag.Auction.Description</h5>
+   
+    
 
-    <h5>Current Highest Bid: @ViewBag.Auction.Bid</h5>
+
+    
+
+   
     @if(@ViewBag.Auction.HighestBidder != null)
     {
         { 
-        <h4>by @ViewBag.Auction.HighestBidder</h4>
+        <h4>Placed By: @ViewBag.Auction.HighestBidder</h4>
         }
     }
 
@@ -42,8 +50,8 @@
 
 
         <form asp-controller="Belt" asp-action="MakeBid" asp-route-id="@ViewBag.Auction.Id" method="POST">
-
-        <label for="bid">Make Bid</label>
+<hr><br>
+        <label for="bid"><h3>Set Your Bid!</h3></label>
         <input name="bid" type="number" class="form-control" id="bid">
 
            @if(ViewBag.AmountErrors != null)
@@ -55,15 +63,15 @@
                 }
                       
             
-        <button type="submit" class="btn btn-primary">Place Bid</button>
+        <br><button type="submit" class="btn btn-primary">Place Bid</button>
         </form>
 
     } 
     else 
     {
-        <h4>Can not bid on your own Auctioned item</h4>
+        <h4>*Can not bid on your own Auctioned item!</h4>
     }
-
+</div>
 }else{
         <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,7 +81,7 @@
             <a class="navbar-brand" href="/">Belt Exam</a>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                <a class="nav-item nav-link active" asp-controller ="Belt" asp-action="Dash">Belt <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" asp-controller ="Belt" asp-action="Dash">Home <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" asp-controller ="Belt" asp-action="Login">Sign In</a>
                 </div>
             </div>

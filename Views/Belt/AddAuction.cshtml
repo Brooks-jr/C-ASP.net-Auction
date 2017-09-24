@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
         
-        <a class="nav-item nav-link active" asp-controller ="Belt" asp-action="Dash">Belt <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link active" asp-controller ="Belt" asp-action="Dash">Home <span class="sr-only">(current)</span></a>
         <a class="nav-item nav-link" asp-controller="Belt" asp-action="Logout">Logout</a>
         <h5 class="nav-item nav-link disabled">@ViewBag.User.firstName</h5>
         
@@ -21,11 +21,11 @@
     <!-- ======================================================================================== -->
     <!-- ======================================================================================== -->
 
-
+    <div class="jumbotron">
     <h2>New Auction</h2>
 
 
-    <form asp-controller="Belt" asp-action="AddAuc" method="POST">
+    <form asp-controller="Belt" asp-action="AddAuction" method="POST">
         <div class="form-group">
             <label for="productname">Product Name</label>
             <input id="productname" asp-for="ProductName" type="text" name="productname"  class="form-control">
@@ -54,9 +54,10 @@
         </div>
     <!-- ======================================================================================== -->
     <!-- ======================================================================================== -->   
-        <button type="submit" class="btn btn-primary">Create Auction</button>
+        <br><button type="submit" class="btn btn-primary">Create Auction</button>
     </form>
-
+    </div>
+    
 }else{
         <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,7 +67,7 @@
             <a class="navbar-brand" href="/">Belt Exam</a>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="Dash">Belt <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="Dash">Home <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="Login">Sign In</a>
                 </div>
             </div>
