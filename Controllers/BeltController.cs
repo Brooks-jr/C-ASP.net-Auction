@@ -166,7 +166,7 @@ namespace BeltExamASP.Controllers
 // ========================================================================================
         [HttpPost]
         [Route("addAuction")]
-        public IActionResult AddAuc(AuctionViewModel model)
+        public IActionResult AddAuction(AuctionViewModel model)
         {
             int? userId = HttpContext.Session.GetInt32("currentUserId");
             
@@ -190,6 +190,8 @@ namespace BeltExamASP.Controllers
             } 
             else
             {
+                ViewBag.User = currentUser;
+                
                 return View(model);
             }
             
