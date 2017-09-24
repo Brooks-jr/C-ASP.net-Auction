@@ -1,0 +1,76 @@
+   <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  
+<br></button>
+  <a class="navbar-brand" href="/">Belt Exam</a>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" asp-controller ="Belt" asp-action="Dash">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" asp-controller="Belt" asp-action="Logout">Sign In</a>
+    </div>
+  </div>
+</nav><br>
+
+
+@model BeltExamASP.Models.PersonViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="jumbotron">
+<h1>Register</h1>
+<form asp-controller="Dash" asp-action="Register" method="POST">
+<!-- ======================================================================================== -->
+<!-- ======================================================================================== -->
+<div class="form-group">
+    <label for="firstName">First Name:</label>
+    <input asp-for="firstName" type="text" name="firstName" class="form-control">
+    <span asp-validation-for="firstName"></span>
+    
+    </div>
+<!-- ======================================================================================== -->
+<!-- ======================================================================================== -->
+<div class="form-group">
+    <label for="lastName">Last Name:</label>
+    <input asp-for="lastName" type="text" name="lastName" class="form-control">
+    <span asp-validation-for="lastName"></span>
+    
+    </div>
+<!-- ======================================================================================== -->
+<!-- ======================================================================================== -->
+<div class="form-group">
+    <label for="userName">Username:</label>
+    <input asp-for="userName" type="text" name="userName" class="form-control">
+    <span asp-validation-for="userName"></span>
+    
+    </div>
+<!-- ======================================================================================== -->
+<!-- ======================================================================================== -->
+<div class="form-group">
+    <label for="password">Password:</label>
+    <input asp-for="password" type="password" name="password" class="form-control">
+    <span asp-validation-for="password"></span>
+    
+    </div>
+<!-- ======================================================================================== -->
+<!-- ======================================================================================== -->
+<div class="form-group">
+    <label for="confirmPassword">Confirm Password:</label>
+    <input asp-for="confirmPassword" type="password" name="confirmPassword" class="form-control"><br>
+    <span asp-validation-for="confirmPassword"></span>
+    
+    </div>
+<!-- ======================================================================================== -->
+<!-- ======================================================================================== -->
+
+   <button type="submit" class="btn btn-primary">Submit</button>
+    
+<!-- ======================================================================================== -->
+<!-- ======================================================================================== -->
+    
+</form>
+
+<br><a href="Login" class="btn btn-primary btn-small" role="button">Or Click Here To Login</a>
+</div>

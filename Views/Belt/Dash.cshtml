@@ -1,0 +1,80 @@
+@if(@ViewBag.User != null)
+{
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+
+        <br></button>
+        <a class="navbar-brand" href="/">Test App</a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+
+            <a class="nav-item nav-link active" asp-controller ="Belt" asp-action="Dash">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" asp-controller="Belt" asp-action="Logout">Logout</a>
+            <h5 class="nav-item nav-link disabled">Welcome, @ViewBag.User.firstName</h5>
+
+            </div>
+        </div>
+    </nav><br>
+    <!-- ======================================================================================== -->
+    <!-- ======================================================================================== --> 
+    <h4>Your Money: $@ViewBag.User.wallet</h4>
+    <a asp-controller="Belt" asp-action="addAuc">Create Auction</a>
+
+    
+    <div class="row">
+            <div class="col-sm-12">
+            <h3>Current Auction</h3>
+            <table class="table">
+            <thead>
+            <tr>
+            <th>Product Name</th>
+            <th>Seller</th>
+            <th>Top Bid</th>
+            <th>Time Remaining</th>
+            <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            @{ foreach(var auction in ViewBag.Auctions)
+                {
+                    <tr>
+                        <td><a asp-controller="Belt" asp-action="ViewAuction" asp-route-id="@auction.Id">@auction.ProductName</a></td>
+                        <td>@auction.CreatedBy</td>
+                        <td>@auction.Bid</td>
+                        <td>@ViewBag.Remaining[@auction.Id] days remaining</td>
+
+                            @if(@auction.CreatedBy == @ViewBag.User.firstName + " " + @ViewBag.User.lastName)
+                            {
+                            <td><a asp-controller="Belt" asp-action="DeleteAuction" asp-route-id="@auction.Id">Delete!</a></td>
+                            }
+                    </tr>
+                } 
+            }
+            </table>
+        </div>
+    </div>
+    
+}else{
+        <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+
+            <br></button>
+            <a class="navbar-brand" href="/">Belt Exam</a>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="Dash">Belt <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="Login">Sign In</a>
+                </div>
+            </div>
+        </nav><br>
+        
+        <div class="jumbotron">
+        <h2>Whoa, Whoa, Whoa!</h2><br>
+        <p class="lead"> Hold it, you must be a registered user to view this page. Go on and sign in or register.</p> 
+
+        <a class="btn btn-primary btn-lg" href="Register" role="button">Register</a>
+        </div>
+
+    }

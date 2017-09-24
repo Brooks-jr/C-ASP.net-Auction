@@ -1,0 +1,89 @@
+@model BeltExamASP.Models.AuctionViewModel
+
+@if(@ViewBag.User != null)
+
+{
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    
+    <br></button>
+    <a class="navbar-brand" href="/">Belt Exam</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+        
+        <a class="nav-item nav-link active" asp-controller ="Belt" asp-action="Dash">Home <span class="sr-only">(current)</span></a> 
+        <a class="nav-item nav-link" asp-controller="Belt" asp-action="Logout">Logout</a>
+        <h5 class="nav-item nav-link disabled">@ViewBag.User.firstName</h5>
+        
+        </div>
+    </div>
+    </nav><br>
+<!-- ======================================================================================== -->
+<!-- ======================================================================================== -->
+
+
+    <h2>@ViewBag.Auction.ProductName</h2>
+    <h3>Created By: @ViewBag.Auction.CreatedBy</h3>
+
+
+    <h5>@ViewBag.Auction.Description</h5>
+
+    <h5>Current Highest Bid: @ViewBag.Auction.Bid</h5>
+    @if(@ViewBag.Auction.HighestBidder != null)
+    {
+        { 
+        <h4>by @ViewBag.Auction.HighestBidder</h4>
+        }
+    }
+
+    @if(ViewBag.User.firstName + " " + ViewBag.User.lastName != ViewBag.Auction.CreatedBy)
+    {
+
+
+        <form asp-controller="Belt" asp-action="MakeBid" asp-route-id="@ViewBag.Auction.Id" method="POST">
+
+        <label for="bid">Make Bid</label>
+        <input name="bid" type="number" class="form-control" id="bid">
+
+           @if(ViewBag.AmountErrors != null)
+                {
+                    foreach(var error in ViewBag.AmountErrors)
+                    {
+                        <p>@error</p>
+                    }
+                }
+                      
+            
+        <button type="submit" class="btn btn-primary">Place Bid</button>
+        </form>
+
+    } 
+    else 
+    {
+        <h4>Can not bid on your own Auctioned item</h4>
+    }
+
+}else{
+        <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+
+            <br></button>
+            <a class="navbar-brand" href="/">Belt Exam</a>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                <a class="nav-item nav-link active" asp-controller ="Belt" asp-action="Dash">Belt <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" asp-controller ="Belt" asp-action="Login">Sign In</a>
+                </div>
+            </div>
+        </nav><br>
+        
+        <div class="jumbotron">
+        <h2>Whoa, Whoa, Whoa!</h2><br>
+        <p class="lead"> Hold it, you must be a registered user to view this page. Go on and sign in or register.</p> 
+
+        <a class="btn btn-primary btn-lg" asp-controller ="Belt" asp-action="Register" role="button">Register</a>
+        </div>
+
+    }
