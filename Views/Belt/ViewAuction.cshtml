@@ -22,21 +22,14 @@
 <!-- ======================================================================================== -->
 <!-- ======================================================================================== -->
 
-        <div class="jumbotron">
+<div class="jumbotron">
 
-        <div class="row">
-        <div class="col-9"><h1>@ViewBag.Auction.ProductName</h1><br> <h4>Created By: @ViewBag.Auction.CreatedBy</h4><hr><br></div>
-        <div class="col-9"><h5>Description: @ViewBag.Auction.Description</h5><hr><br></div><br>
-        <div class="col-6"> <h5>-Current Highest Bid: $@ViewBag.Auction.Bid</h5></div>
-        </div>
-
-
-   
-    
-
-
-    
-
+    <div class="row">
+    <div class="col-9"><h1>@ViewBag.Auction.ProductName</h1><br> <h4>Created By: @ViewBag.Auction.CreatedBy</h4><hr><br></div>
+    <div class="col-9"><h5>Description: @ViewBag.Auction.Description</h5><hr><br></div><br>
+    <div class="col-6"> <h5>-Current Highest Bid: $@ViewBag.Auction.Bid</h5></div>
+    </div>
+<!-- ======================================================================================== -->
    
     @if(@ViewBag.Auction.HighestBidder != null)
     {
@@ -44,15 +37,17 @@
         <h4>Placed By: @ViewBag.Auction.HighestBidder</h4>
         }
     }
+<!-- ======================================================================================== -->
 
     @if(ViewBag.User.firstName + " " + ViewBag.User.lastName != ViewBag.Auction.CreatedBy)
     {
 
-
         <form asp-controller="Belt" asp-action="MakeBid" asp-route-id="@ViewBag.Auction.Id" method="POST">
-<hr><br>
+        <hr><br>
         <label for="bid"><h3>Set Your Bid!</h3></label>
         <input name="bid" type="number" class="form-control" id="bid">
+
+            <!-- ======================================================================================== -->
 
            @if(ViewBag.AmountErrors != null)
                 {
@@ -61,17 +56,23 @@
                         <p>@error</p>
                     }
                 }
+            <!-- ======================================================================================== -->
                       
             
         <br><button type="submit" class="btn btn-primary">Place Bid</button>
         </form>
 
     } 
+<!-- ======================================================================================== -->
+        
     else 
     {
         <h4>*Can not bid on your own Auctioned item!</h4>
     }
+    
 </div>
+<!-- ======================================================================================== -->
+
 }else{
         <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
